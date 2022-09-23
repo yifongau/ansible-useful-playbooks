@@ -26,15 +26,17 @@
         mode: 0750
       loop:
         - "{{ vim_dir }}"
-        - "{{ vim_dir }}/pack/core/start"
+        - "{{ vim_dir }}/pack/bundle/start"
     - name: Deploy plugins
       git:
-        dest: "{{ vim_dir}}/pack/core/start/{{ item.name }}"
+        dest: "{{ vim_dir}}/pack/bundle/start/{{ item.name }}"
         repo: "{{ item.url }}"
         clone: yes
         update: yes
         recursive: no
       loop:
+      - name: surround-vim
+        url: https://github.com/tpope/vim-surround
       - name: vim-airline
         url: https://github.com/vim-airline/vim-airline
       - name: vim-airline-themes
@@ -65,6 +67,12 @@
       lineinfile:
         path: "{{ vimrc }}"
         line: set termguicolors
+        create: yes 
+    - name: Set background to dark
+      lineinfile:
+        path: "{{ vimrc }}"
+        regex: '^set background ='
+        line: set background=dark
         create: yes 
     - name: Use Solarized8 colorscheme
       lineinfile:
