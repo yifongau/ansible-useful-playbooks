@@ -26,10 +26,10 @@
         mode: 0750
       loop:
         - "{{ vim_dir }}"
-        - "{{ vim_dir }}/pack"
+        - "{{ vim_dir }}/pack/core/start"
     - name: Deploy plugins
       git:
-        dest: "{{ vim_dir}}/pack/{{ item.name }}"
+        dest: "{{ vim_dir}}/pack/core/start/{{ item.name }}"
         repo: "{{ item.url }}"
         clone: yes
         update: yes
@@ -37,9 +37,38 @@
       loop:
       - name: vim-airline
         url: https://github.com/vim-airline/vim-airline
+      - name: vim-airline-themes
+        url: https://github.com/vim-airline/vim-airline-themes
       - name: fzf-vim
         url: https://github.com/junegunn/fzf.vim
       - name: vim-gitgutter
         url: https://github.com/airblade/vim-gitgutter
       - name: vim-fugitive
         url: https://github.com/tpope/vim-fugitive
+      - name: vim-solarized8
+        url: https://github.com/lifepillar/vim-solarized8
+
+    # Provisioning .vimrc
+    - name: Populate g:airline_symbols dictionary
+      lineinfile:
+        path: "{{ vimrc }}"
+        regex: '^let g:airline_powerline_fonts =' 
+        line: let g:airline_powerline_fonts = 1
+        create: yes
+    - name: Enable airline powerline support
+      lineinfile:
+        path: "{{ vimrc }}"
+        regex: '^let g:airline_theme ='
+        line: let g:airline_theme = 'solarized_flood'
+        create: yes 
+    - name: Enable true color support
+      lineinfile:
+        path: "{{ vimrc }}"
+        line: set termguicolors
+        create: yes 
+    - name: Use Solarized8 colorscheme
+      lineinfile:
+        path: "{{ vimrc }}"
+        regex: '^colorscheme'
+        line: colorscheme solarized8
+        create: yes 
