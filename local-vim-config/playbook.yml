@@ -49,6 +49,8 @@
         url: https://github.com/tpope/vim-fugitive
       - name: vim-solarized8
         url: https://github.com/lifepillar/vim-solarized8
+      - name: vim-terraform
+        url: https://github.com/hashivim/vim-terraform
 
     # Provisioning .vimrc
     - name: Populate g:airline_symbols dictionary
@@ -78,5 +80,5 @@
       lineinfile:
         path: "{{ vimrc }}"
         regex: '^colorscheme'
-        line: colorscheme solarized8
+        line: colorscheme solarized8_flat
         create: yes 
