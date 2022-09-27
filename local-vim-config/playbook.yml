@@ -53,32 +53,23 @@
         url: https://github.com/hashivim/vim-terraform
 
     # Provisioning .vimrc
-    - name: Populate g:airline_symbols dictionary
+    - name: Ensure correct .vimrc settings
       lineinfile:
         path: "{{ vimrc }}"
-        regex: '^let g:airline_powerline_fonts =' 
-        line: let g:airline_powerline_fonts = 1
+        regexp: '{{item.from}}'
+        line: '{{item.to}}'
+        state: present
         create: yes
-    - name: Enable airline powerline support
-      lineinfile:
-        path: "{{ vimrc }}"
-        regex: '^let g:airline_theme ='
-        line: let g:airline_theme = 'solarized_flood'
-        create: yes 
-    - name: Enable true color support
-      lineinfile:
-        path: "{{ vimrc }}"
-        line: set termguicolors
-        create: yes 
-    - name: Set background to dark
-      lineinfile:
-        path: "{{ vimrc }}"
-        regex: '^set background ='
-        line: set background=dark
-        create: yes 
-    - name: Use Solarized8 colorscheme
-      lineinfile:
-        path: "{{ vimrc }}"
-        regex: '^colorscheme'
-        line: colorscheme solarized8_flat
-        create: yes 
+      with_items:
+        - from: '^let g:airline_powerline_fonts ='
+          to: let g:airline_powerline_fonts = 1
+        - from: '^let g:airline_theme ='
+          to: let g:airline_theme = 'solarized_flood'
+        - from: '^set termguicolors'
+          to: set termguicolors 
+        - from: '^set background ='
+          to: set background=dark
+        - from: '^colorscheme'
+          to: colorscheme solarized8_flat
+        - from: '^colorscheme'
+          to: colorscheme solarized8_flat
