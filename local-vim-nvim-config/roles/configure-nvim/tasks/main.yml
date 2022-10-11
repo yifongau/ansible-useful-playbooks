@@ -51,6 +51,16 @@
         url: https://github.com/lifepillar/vim-solarized8
       - name: vim-terraform
         url: https://github.com/hashivim/vim-terraform
+      - name: nvim-lspconfig
+        url: https://github.com/neovim/nvim-lspconfig
+      - name: nvim-nlua
+        url: https://github.com/tjdevries/nlua.nvim
+      - name: typescript-vim
+        url: https://github.com/leafgarland/typescript-vim
+      - name: nvim-cmp
+        url: https://github.com/hrsh7th/nvim-cmp
+      - name: cmp-nvim-lsp
+        url: https://github.com/hrsh7th/cmp-nvim-lsp
 
     # Provisioning .vimrc
     - name: Ensure correct .vimrc settings
