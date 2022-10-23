@@ -26,7 +26,7 @@
         mode: 0750
       loop:
         - "{{ vim_dir }}"
-        - "{{ vim_dir }}/pack/bundle/start"
+        - "{{ vim_dir }}/pack/basic/start"
     - name: Deploy plugins
       git:
         dest: "{{ vim_dir}}/pack/bundle/start/{{ item.name }}"
@@ -49,11 +49,9 @@
         url: https://github.com/tpope/vim-fugitive
       - name: vim-solarized8
         url: https://github.com/lifepillar/vim-solarized8
-      - name: vim-terraform
-        url: https://github.com/hashivim/vim-terraform
-
-    # Provisioning .vimrc
-    - name: Ensure correct .vimrc settings
+    
+  # Provisioning .vimrc
+    - name: Ensure certain .vimrc settings exist
       lineinfile:
         path: "{{ vimrc }}"
         regexp: '{{item.from}}'

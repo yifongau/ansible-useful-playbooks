@@ -1,0 +1,38 @@
+---
+- name: Install basic plugins
+  hosts: localhost
+  gather_facts: yes
+  become: no
+
+  vars:
+    nvim_dir: "{{ ansible_env .HOME }}/.config/nvim"
+    plugin_dir: "{{ nvim_dir }}/pack/basic/start"
+    init_vim: "{{ nvim_dir }}/init.vim"
+
+  tasks:
+    - name: Ensure pack directory exists
+      file:
+        path: "{{ item }}"
+        state: directory
+        recurse: no
+        mode: 0750
+      loop:
+        - "{{ nvim_dir }}"
+        - "{{ plugin_dir }}"
+    - name: Deploy plugins
+      git:
+        dest: "{{ plugin_dir}}/{{ item.name }}"
+        repo: "{{ item.url }}"
+        clone: yes
+        update: yes
+      loop:
+      - name: surround-vim
+        url: https://github.com/tpope/vim-surround
+      - name: vim-airline
+        url: https://github.com/vim-airline/vim-airline
+      - name: fzf-vim
+        url: https://github.com/junegunn/fzf.vim
+      - name: vim-gitgutter
+        url: https://github.com/airblade/vim-gitgutter
+      - name: vim-fugitive
+        url: https://github.com/tpope/vim-fugitive 

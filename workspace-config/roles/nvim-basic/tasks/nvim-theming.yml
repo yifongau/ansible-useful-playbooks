@@ -1,0 +1,54 @@
+---
+- name: Install basic plugins
+  hosts: localhost
+  gather_facts: yes
+  become: no
+
+  vars:
+    nvim_dir: "{{ ansible_env .HOME }}/.config/nvim"
+    plugin_dir: "{{ nvim_dir }}/pack/basic/start"
+    init_vim: "{{ nvim_dir }}/init.vim"
+
+  tasks:
+    - name: Ensure pack directory exists
+      file:
+        path: "{{ item }}"
+        state: directory
+        recurse: no
+        mode: 0750
+      loop:
+        - "{{ nvim_dir }}"
+        - "{{ plugin_dir }}"
+    - name: Deploy plugins
+      git:
+        dest: "{{ plugin_dir}}/{{ item.name }}"
+        repo: "{{ item.url }}"
+        clone: yes
+        update: yes
+      loop:
+      - name: vim-airline-themes
+        url: https://github.com/vim-airline/vim-airline-themes 
+      - name: vim-solarized8
+        url: https://github.com/lifepillar/vim-solarized8
+
+  # Init.vim settings
+    - name: Ensure certain .vimrc settings exist
+      lineinfile:
+        path: "{{ init_vim }}"
+        regexp: '{{item.from}}'
+        line: '{{item.to}}'
+        state: present
+        create: yes
+      with_items:
+        - from: '^let g:airline_powerline_fonts ='
+          to: let g:airline_powerline_fonts = 1
+        - from: '^let g:airline_theme ='
+          to: let g:airline_theme = 'solarized_flood'
+        - from: '^set termguicolors'
+          to: set termguicolors 
+        - from: '^set background ='
+          to: set background=dark
+        - from: '^colorscheme'
+          to: colorscheme solarized8_flat
+        - from: '^colorscheme'
+          to: colorscheme solarized8_flat
