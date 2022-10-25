@@ -1,0 +1,42 @@
+---
+- name: Install IDE plugins
+  hosts: localhost
+  gather_facts: yes
+  become: no
+
+  vars:
+    nvim_dir: "{{ ansible_env .HOME }}/.config/nvim"
+    plugin_dir: "{{ nvim_dir }}/pack/ide/start"
+    init_vim: "{{ nvim_dir }}/init.vim"
+
+  tasks:
+    - name: Ensures pack directory exists
+      file:
+        path: "{{ item }}"
+        state: directory
+        recurse: no
+        mode: 0750
+      loop:
+        - "{{ nvim_dir }}"
+        - "{{ plugin_dir }}"
+    - name: Deploy development plugins
+      git:
+        dest: "{{ plugin_dir}}/{{ item.name }}"
+        repo: "{{ item.url }}"
+        clone: yes
+        update: yes
+        recursive: no
+      loop:
+      - name: vim-terraform
+        url: https://github.com/hashivim/vim-terraform
+      - name: nvim-lspconfig
+        url: https://github.com/neovim/nvim-lspconfig
+      - name: nvim-nlua
+        url: https://github.com/tjdevries/nlua.nvim
+      - name: typescript-vim
+        url: https://github.com/leafgarland/typescript-vim
+      - name: nvim-cmp
+        url: https://github.com/hrsh7th/nvim-cmp
+      - name: cmp-nvim-lsp
+        url: https://github.com/hrsh7th/cmp-nvim-lsp
+

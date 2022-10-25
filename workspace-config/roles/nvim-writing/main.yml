@@ -26,15 +26,11 @@
         clone: yes
         update: yes
       loop:
-      - name: surround-vim
-        url: https://github.com/tpope/vim-surround
-      - name: vim-fugitive
-        url: https://github.com/tpope/vim-fugitive 
-      - name: vim-obsession
-        url: https://github.com/tpope/vim-obsession
-      - name: vim-airline
-        url: https://github.com/vim-airline/vim-airline
-      - name: fzf-vim
-        url: https://github.com/junegunn/fzf.vim
-      - name: vim-gitgutter
-        url: https://github.com/airblade/vim-gitgutter
+      - name: vim-textobj-user
+        url: https://github.com/kana/vim-textobj-user
+      - name: vim-textobj-sentence
+        url: https://github.com/preservim/vim-textobj-sentence
+      - name: vim-textobj-quote
+        url: https://github.com/preservim/vim-textobj-quote 
+      - name: zen-mode
+        url: https://github.com/folke/zen-mode.nvim 
