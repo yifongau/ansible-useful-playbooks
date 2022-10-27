@@ -6,7 +6,7 @@
 
   vars:
     nvim_dir: "{{ ansible_env .HOME }}/.config/nvim"
-    plugin_dir: "{{ nvim_dir }}/pack/basic/start"
+    plugin_dir: "{{ nvim_dir }}/pack/writing/start"
     init_vim: "{{ nvim_dir }}/init.vim"
 
   tasks:
@@ -32,5 +32,9 @@
         url: https://github.com/preservim/vim-textobj-sentence
       - name: vim-textobj-quote
         url: https://github.com/preservim/vim-textobj-quote 
+      - name: vim-pandoc-syntax
+        url: https://github.com/vim-pandoc/vim-pandoc-syntax
+      - name: vim-pandoc
+        url: https://github.com/vim-pandoc/vim-pandoc
       - name: zen-mode
         url: https://github.com/folke/zen-mode.nvim 
