@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure pack directory exists
   file:
     path: "{{ item }}"
@@ -21,24 +20,3 @@
   - name: vim-solarized8
     url: https://github.com/lifepillar/vim-solarized8
 
-# Init.vim settings
-- name: Ensure certain .vimrc settings exist
-  lineinfile:
-    path: "{{ init_vim }}"
-    regexp: '{{item.from}}'
-    line: '{{item.to}}'
-    state: present
-    create: yes
-  with_items:
-    - from: '^let g:airline_powerline_fonts ='
-      to: let g:airline_powerline_fonts = 1
-    - from: '^let g:airline_theme ='
-      to: let g:airline_theme = 'solarized_flood'
-    - from: '^set termguicolors'
-      to: set termguicolors 
-    - from: '^set background ='
-      to: set background=dark
-    - from: '^colorscheme'
-      to: colorscheme solarized8_flat
-    - from: '^colorscheme'
-      to: colorscheme solarized8_flat
