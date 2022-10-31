@@ -1,0 +1,3 @@
+nvim_dir: "{{ ansible_env .HOME }}/.config/nvim"
+plugin_dir: "{{ nvim_dir }}/pack/writing/start"
+init_vim: "{{ nvim_dir }}/init.vim"
