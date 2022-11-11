@@ -28,5 +28,3 @@
     url: https://github.com/vim-airline/vim-airline
   - name: vim-dirvish
     url: https://github.com/justinmk/vim-dirvish
-  - name: battery.vim
-    url: https://github.com/lambdalisue/battery.vim/
