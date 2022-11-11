@@ -16,17 +16,17 @@
     clone: yes
     update: yes
   loop:
-  - name: surround-vim
-    url: https://github.com/tpope/vim-surround
   - name: vim-fugitive
     url: https://github.com/tpope/vim-fugitive 
   - name: vim-surround
     url: https://github.com/tpope/vim-surround
   - name: vim-gitgutter
     url: https://github.com/airblade/vim-gitgutter
-  - name: fzf-vim
+  - name: fzf.vim
     url: https://github.com/junegunn/fzf.vim
   - name: vim-airline
     url: https://github.com/vim-airline/vim-airline
   - name: vim-dirvish
     url: https://github.com/justinmk/vim-dirvish
+  - name: battery.vim
+    url: https://github.com/lambdalisue/battery.vim/
