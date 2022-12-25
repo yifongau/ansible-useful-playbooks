@@ -4,4 +4,6 @@
     - include_role:
         name: nvim-basic
     - include_role:
+        name: nvim-writing
+    - include_role:
         name: nvim-ide
