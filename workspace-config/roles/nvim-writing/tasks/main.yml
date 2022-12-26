@@ -25,5 +25,3 @@
     url: https://github.com/vim-pandoc/vim-pandoc-syntax
   - name: vim-pandoc
     url: https://github.com/vim-pandoc/vim-pandoc
-  - name: zen-mode
-    url: https://github.com/folke/zen-mode.nvim 
